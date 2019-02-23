@@ -9,11 +9,11 @@ GAME FUNCTION:
 
 
 // VARS
-let randomNumber;
 let guesses;
 let count = 0;
 let min = 1;
 let max = 10;
+let randomNumber = Math.floor(Math.random() * max) + 1;
 
 const minNum = document.querySelector('.min-num');
 const maxNum = document.querySelector('.max-num'); 
@@ -86,10 +86,12 @@ function submitFunction() {
     // todo: focus on guessInput after submit click (and page load probably)
 }
 
+
 function randomNumberFunction() {
     randomNumber = Math.floor(Math.random() * max) + 1;
     return randomNumber;
 }
+
 
 function reset() {
     // reset everything back to the beginning
@@ -103,7 +105,6 @@ function reset() {
     guessInput.style.borderColor = '#bbb';
 
     randomNumberFunction();
-    console.log(randomNumberFunction());
 }
 
 // todo: set focus on inputfield to change colors (using body)
