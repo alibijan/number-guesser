@@ -7,13 +7,12 @@ GAME FUNCTION:
 - Let player choose to play again
 */
 
-
 // VARS
-let randomNumber;
 let guesses;
 let count = 0;
 let min = 1;
 let max = 10;
+let randomNumber = Math.floor(Math.random() * max) + 1;
 
 const minNum = document.querySelector('.min-num');
 const maxNum = document.querySelector('.max-num'); 
@@ -31,10 +30,6 @@ maxNum.innerHTML = max;
 // event handler
 submit.addEventListener('click', submitFunction);
 
-function randomNumberFunction() {
-    randomNumber = Math.floor(Math.random() * max) + 1;
-    return randomNumber;
-}
 
 // submit number function
 function submitFunction() {
@@ -51,7 +46,7 @@ function submitFunction() {
     } else if ( count == 2 ) {
         guesses = `${guessInput.value} is not correct, 1 guess left`;
     } else if ( count == 3 ) {
-        guesses = `Game Over! You lost! The correct number was ${randomNumberFunction()}`;
+        guesses = `Game Over! You lost! The correct number was ${randomNumber}`;
         // set end-of-round edits
         // todo: make this a function
         submit.setAttribute('value', 'Play again');
@@ -59,7 +54,7 @@ function submitFunction() {
     }
 
     if( count <= 3 ) {
-        if( guessInput.value == randomNumberFunction() ) {
+        if( guessInput.value == randomNumber ) {
             // CONGRATS!
             message.innerHTML = `${guessInput.value} is correct, YOU WIN!`;
 
@@ -90,6 +85,13 @@ function submitFunction() {
     // todo: focus on guessInput after submit click (and page load probably)
 }
 
+
+function randomNumberFunction() {
+    randomNumber = Math.floor(Math.random() * max) + 1;
+    return randomNumber;
+}
+
+
 function reset() {
     // reset everything back to the beginning
     count = 0;
@@ -102,11 +104,10 @@ function reset() {
     guessInput.style.borderColor = '#bbb';
 
     randomNumberFunction();
-    console.log(randomNumberFunction());
 }
 
+
 // todo: set focus on inputfield to change colors (using body)
-// todo: celebration
 
 // console.log(minNum);
 // console.log(maxNum);
